@@ -1,11 +1,12 @@
+const dotenv = require('dotenv').config('./.env');
+
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      filename: './data/dev.db3'
-    },
+    connection: process.env.DB_URL,
+    searchPath: ['knex', 'public'],
     migrations: {
       directory: './data/migrations'
     },
