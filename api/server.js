@@ -13,8 +13,11 @@ server.use(express.json())
 
 server.use('/api/bugtracker', BugTrackerRouter);
 
+
 server.get('/', (req, res) => {
-    res.status(200).json({mes: "HI, from the backend"});
+	res.status(200).json({
+		mes: "HI, from the backend"
+	});
 });
 
 module.exports = server;
