@@ -1,7 +1,8 @@
 const db = require('../../data/dbConfig');
 
 module.exports = {
-	get
+	get,
+	newBug,
 }
 
 async function get() {
@@ -10,4 +11,9 @@ async function get() {
 
 	const bugTracker = await db('bug-tracker');
 	return bugTracker;
+}
+
+async function newBug(data) {
+	const newBug = await db.insert(data).into('bug-tracker');
+	return newBug;
 }
