@@ -16,12 +16,4 @@ router.get('/', async (req, res, next) => {
 
 // MIDDLEWARE
 
-router.use((err, req, res, next) => {
-	err.statusCode = err.statusCode ? err.statusCode : 500;
-	res.status(err.statusCode).json({
-		mes: err.message,
-		stack: err.stack
-	})
-})
-
 module.exports = router;
