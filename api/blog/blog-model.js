@@ -2,6 +2,10 @@ const db = require('../../data/dbConfig');
 
 module.exports = {
 	get,
+	getById,
+	post,
+	update,
+	remove
 }
 
 async function get() {
@@ -13,28 +17,26 @@ async function get() {
 }
 
 async function getById(id) {
-	const blog = await db.first('*').from('blog').where({
+	const blog = await db('blog').where(
+		'id',
 		id
-	});
+	);
 	return blog;
 }
 
-async function post(data) {
-	const [blogId] = await db.insert(data).into('blog');
-	const blog = await getById(blogId);
+async function post(blogData) {
+	const blog = await db.insert(blogData).into('blog');
 	return blog;
 }
 
-function update(id, changes) {
-	db('blog').where({
+async function update(id, changes) {
+	if (id && changes) {
+		return await db('blog').where({
 			id
-		}).update(changes)
-		.then(count => {
-			return count;
-		})
-		.catch(err => {
-			throw err;
-		});
+		}).update(changes).then(count => (count > 0 ? this.getById(id) : null));
+	} else {
+		return null;
+	};
 }
 
 async function remove(id) {

@@ -13,7 +13,68 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
+router.post('/', checkBlogPost, async (req, res, next) => {
+	const blogData = req.body;
+	try {
+		const data = await Blog.post(blogData);
+		res.json(data);
+	} catch (err) {
+		next(err);
+	}
+})
+
+router.put('/:id', async (req, res, next) => {
+	const {
+		id
+	} = req.params;
+	const changes = req.body;
+
+	try {
+		const changedBlogPost = await Blog.update(id, changes);
+		if (changedBlogPost) {
+			res.json(changedBlogPost);
+		} else {
+			res.status(404).json({
+				message: 'invalid id'
+			});
+		}
+	} catch (err) {
+		next(err);
+	}
+});
+
+router.delete('/:id', async (req, res, next) => {
+	const {
+		id
+	} = req.params;
+
+	try {
+		const count = await Blog.remove(id);
+		if (count) {
+			res.json({
+				message: `Deleted ${count} records`
+			});
+		} else {
+			res.status(404).json({
+				message: 'invalid id'
+			});
+		}
+	} catch (err) {
+		next(err);
+	}
+})
 
 // MIDDLEWARE
+
+function checkBlogPost(req, res, next) {
+	const blogData = req.body;
+	if (!blogData.title || !blogData.body) {
+		const err = new Error('Body must include a title and body');
+		err.statusCode = 400;
+		next(err);
+	} else {
+		next();
+	}
+}
 
 module.exports = router;
