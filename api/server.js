@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const BugTrackerRouter = require('./bug-tracker/bug-tracker-router');
 const BlogRouter = require('./blog/blog-router');
+const ProjectRouter = require('./project/project-router');
 
 const server = express();
 
@@ -14,6 +15,7 @@ server.use(express.json())
 
 server.use('/api/bugtracker', BugTrackerRouter);
 server.use('/api/blog', BlogRouter);
+server.use('/api/project', ProjectRouter);
 
 
 server.get('/', (req, res) => {
