@@ -23,6 +23,26 @@ router.post('/', checkBugTrackerPost, async (req, res, next) => {
 	}
 })
 
+router.put('/', checkBugTrackerPost, async (req, res, next) => {
+	const {
+		id
+	} = req.params;
+	const changes = req.body;
+
+	try {
+		const changedBugTrackerPost = await BugTracker.editBug(id, changes);
+		if (changedBugTrackerPost) {
+			res.json(changedBugTrackerPost);
+		} else {
+			res.status(404).json({
+				message: 'invalid id'
+			});
+		}
+	} catch (err) {
+		next(err);
+	}
+});
+
 // MIDDLEWARE
 
 function checkBugTrackerPost(req, res, next) {

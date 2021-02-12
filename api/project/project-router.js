@@ -14,9 +14,9 @@ router.get('/', async (req, res, next) => {
 })
 
 router.post('/', checkProjectPost, async (req, res, next) => {
-	const data = req.body;
+	const body = req.body;
 	try {
-		const data = await Project.post(data);
+		const data = await Project.post(body);
 		res.json(data);
 	} catch (err) {
 		next(err);
@@ -67,8 +67,8 @@ router.delete('/:id', async (req, res, next) => {
 // MIDDLEWARE
 
 function checkProjectPost(req, res, next) {
-	const data = req.body;
-	if (!data.portfolio_title || !data.github_url || !data.heroku_url || !data.tools) {
+	const body = req.body;
+	if (!body.portfolio_title || !body.github_url || !body.heroku_url || !body.tools) {
 		const err = new Error('Body must include a title and body');
 		err.statusCode = 400;
 		next(err);
