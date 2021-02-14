@@ -6,7 +6,7 @@ module.exports = {
     client: 'pg',
     useNullAsDefault: true,
     connection: process.env.DB_URL,
-    searchPath: ['knex', 'public'],
+    //searchPath: ['knex', 'public'],
     migrations: {
       directory: './data/migrations'
     },
