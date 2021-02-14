@@ -39,6 +39,7 @@ server.use(session(sessionConfig));
 server.use('/api/bugtracker', BugTrackerRouter);
 server.use('/api/blog', BlogRouter);
 server.use('/api/project', ProjectRouter);
+server.use("/api/auth", authRouter);
 
 
 server.get('/', (req, res) => {
