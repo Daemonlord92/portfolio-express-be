@@ -1,7 +1,7 @@
 const express = require('express');
-const session = require('express-session');
+/*const session = require('express-session');*/
 const helmet = require('helmet');
-const knexSessionStore = require('connect-session-knex');
+/*const knexSessionStore = require('connect-session-knex');*/
 
 const cors = require('cors');
 
