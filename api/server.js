@@ -8,10 +8,11 @@ const cors = require('cors');
 const BugTrackerRouter = require('./bug-tracker/bug-tracker-router');
 const BlogRouter = require('./blog/blog-router');
 const ProjectRouter = require('./project/project-router');
+const authRouter = require('./auth/auth-router');
 
 const server = express();
 
-const sessionConfig = {
+/*const sessionConfig = {
 	name: 'mjmsession',
 	secret: '7bfece61a4dbbc7b427355fd1499a851',
 	cookie: {
@@ -29,12 +30,12 @@ const sessionConfig = {
 		createtable: true,
 		clearInterval: 1000 * 60 * 60
 	})
-}
+}*/
 
 server.use(cors());
 server.use(helmet());
 server.use(express.json());
-server.use(session(sessionConfig));
+/*server.use(session(sessionConfig));*/
 
 server.use('/api/bugtracker', BugTrackerRouter);
 server.use('/api/blog', BlogRouter);

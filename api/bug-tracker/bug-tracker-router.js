@@ -1,5 +1,5 @@
 const express = require('express');
-const isLoggedIn = require('./auth/is-logged-in');
+const isLoggedIn = require('../auth/is-logged-in');
 const BugTracker = require('./bug-tracker-model');
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-router.post('/', isLoggedIn, checkBugTrackerPost, async (req, res, next) => {
+router.post('/', /*isLoggedIn*/ checkBugTrackerPost, async (req, res, next) => {
 	const body = req.body;
 	try {
 		const data = await BugTracker.newBug(body);
@@ -23,7 +23,7 @@ router.post('/', isLoggedIn, checkBugTrackerPost, async (req, res, next) => {
 	}
 })
 
-router.put('/', isLoggedIn, checkBugTrackerPost, async (req, res, next) => {
+router.put('/', /*isLoggedIn*/ checkBugTrackerPost, async (req, res, next) => {
 	const {
 		id
 	} = req.params;

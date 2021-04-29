@@ -1,5 +1,5 @@
 const express = require('express');
-const isLoggedIn = require('./auth/is-logged-in');
+const isLoggedIn = require('../auth/is-logged-in');
 const Blog = require('./blog-model');
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 	}
 })
 
-router.post('/', isLoggedIn, checkBlogPost, async (req, res, next) => {
+router.post('/', /*isLoggedIn*/ checkBlogPost, async (req, res, next) => {
 	const blogData = req.body;
 	try {
 		const data = await Blog.post(blogData);
@@ -23,7 +23,7 @@ router.post('/', isLoggedIn, checkBlogPost, async (req, res, next) => {
 	}
 })
 
-router.put('/:id', isLoggedIn, async (req, res, next) => {
+router.put('/:id', /*isLoggedIn*/ async (req, res, next) => {
 	const {
 		id
 	} = req.params;
@@ -43,7 +43,7 @@ router.put('/:id', isLoggedIn, async (req, res, next) => {
 	}
 });
 
-router.delete('/:id', isLoggedIn, async (req, res, next) => {
+router.delete('/:id', /*isLoggedIn*/ async (req, res, next) => {
 	const {
 		id
 	} = req.params;
