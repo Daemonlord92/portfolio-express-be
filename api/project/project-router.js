@@ -1,6 +1,7 @@
 const express = require('express');
 const isLoggedIn = require('../auth/is-logged-in');
 const Project = require('./project-model');
+const restrict = require('../middleware/restricted');
 
 const router = express.Router();
 
