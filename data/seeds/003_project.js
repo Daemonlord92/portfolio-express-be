@@ -21,6 +21,12 @@ exports.seed = function(knex) {
         heroku_url: 'https://devdesk-queue-bw-pt.github.io/front-end/',
         tools: 'React, Redux, Bootstrap',
         img_url: 'https://thumbs.dreamstime.com/z/business-solution-8384779.jpg'
+      }, {
+        portfolio_title: 'Water My Plants API',
+        github_url: 'https://github.com/Daemonlord92/Water-my-plants-199-be',
+        heroku_url: 'https://dashboard.heroku.com/apps/water-my-plants-api-t199',
+        tools: 'JavaScript, Express.js, PostgreSQL',
+        img_url: 'https://thumbs.dreamstime.com/z/business-solution-8384779.jpg'
       }]);
     });
 };

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const secrets = require('../config/secret');
+const secrets = require('../config/secrets');
 module.exports = (req, res, next) => {
   const token = req.header('authorization');
   if(!token) {
@@ -22,4 +22,3 @@ module.exports = (req, res, next) => {
       })
     }
 };
-© 2021 GitHub, In
